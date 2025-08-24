@@ -2,7 +2,9 @@
 
 A React Native + Expo app to explore sports tournaments by sport & date.  
 
----
+---# Demo 🎥
+![App Demo](./assets/demo.gif)
+
 
 ## 🚀 Features
 - 🏅 Switch between sports → updates tournaments dynamically  
@@ -27,16 +29,24 @@ A React Native + Expo app to explore sports tournaments by sport & date.
 Clone & run the app locally:
 
 ```bash
-git clone https://github.com/<your-username>/stapubox-players.git
+git clone https://github.com/GudwinNayak-9284/stapubox-players.git
 cd stapubox-players
 npm install
 # or
 yarn install
-
+```
 Start development server:
+```bash
 npx expo start
+```
+
 Run on:
 Android: press a
 iOS: press i
 Web: press w
-```
+
+
+🤝 Decisions & Notes
+Used custom shimmer loaders instead of third-party libraries for stability.
+Used FlatList with skeleton placeholders to improve perceived performance.
+Calendar highlights tournament dates & works with dynamic month switching.
