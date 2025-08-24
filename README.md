@@ -3,7 +3,7 @@
 A React Native + Expo app to explore sports tournaments by sport & date.  
 
 # Demo 🎥
-[Watch Demo Video]([https://drive.google.com/file/d/FILE_ID/view?usp=sharing](https://drive.google.com/file/d/1sQ5BeOHsPfwqj1gk4Bqpl7spW8GvOoeE/view?usp=sharing))
+[Watch Demo Video](https://drive.google.com/file/d/1sQ5BeOHsPfwqj1gk4Bqpl7spW8GvOoeE/view?usp=drive_link)
 
 ## 🚀 Features
 - 🏅 Switch between sports → updates tournaments dynamically  
