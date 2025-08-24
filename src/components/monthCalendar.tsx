@@ -5,6 +5,9 @@ import { Calendar } from "react-native-calendars";
 import { Colors } from "../theme/colors";
 import dayjs from "dayjs";
 import { Ionicons } from "@expo/vector-icons"; // 👈 import icons
+import isBetween from "dayjs/plugin/isBetween";
+
+dayjs.extend(isBetween);
 
 type Props = {
   months: string[];
@@ -43,14 +46,16 @@ export default function MonthCalendar({
     const marked: Record<string, any> = {};
   
     highlighted.forEach((date) => {
+    if (dayjs(date).isBetween("2025-08-01", "2025-10-31", "day", "[]")) {
       marked[date] = {
         marked: false,
-        dotColor: "#000",
+        dotColor: Colors.primary,
         customStyles: {
-          text: { color: "#000", fontWeight: "900" }, // dark bold text
+          text: { color: Colors.text, fontWeight: "700" },
         },
       };
-    });
+    }
+  });
   
     if (activeDate) {
       marked[activeDate] = {
