@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { Colors } from "../theme/colors";
 import { Tournament } from "../types";
-import { fmtDateRange, fmtTimeIST } from "../utils/date";
+import { fmtDateRange, fmtTimeIST, toIST } from "../utils/date";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 if (
@@ -89,7 +89,8 @@ export default function TournamentCard({ tournament }: Props) {
       {open && hasMatches && (
         <View style={styles.matches}>
           {tournament.matches!.map((m) => {
-            const safeDate = m.start_time ? new Date(m.start_time) : null;
+            const dateObj = m.start_date ? toIST(m.start_date) : null;
+
             return (
               <View key={m.id} style={styles.matchCard}>
                 {/* Match header */}
@@ -135,14 +136,8 @@ export default function TournamentCard({ tournament }: Props) {
                         size={18}
                         color={Colors.text}
                       />
-                      <Text style={styles.infoText}>
-                        {safeDate
-                          ? safeDate.toLocaleDateString("en-GB", {
-                              day: "2-digit",
-                              month: "short",
-                              year: "numeric",
-                            })
-                          : "TBD"}
+                      <Text style={styles.infoCal}>
+                        {dateObj?.format("DD MMM YYYY") ?? "TBD"}
                       </Text>
                     </View>
                     <View style={styles.trTime}>
@@ -153,7 +148,7 @@ export default function TournamentCard({ tournament }: Props) {
                         style={{ marginLeft: 16 }}
                       />
                       <Text style={styles.infoText}>
-                        {m.start_time ? fmtTimeIST(m.start_time) : "TBD"}
+                      {dateObj ? dateObj.format("hh:mm A") : "TBD"}
                       </Text>
                     </View>
                   </View>
@@ -183,7 +178,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     marginHorizontal: 12,
     marginBottom: 4,
-    marginTop:4,
+    marginTop: 4,
     overflow: "hidden",
   },
   header: {
@@ -242,10 +237,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginVertical: 8,
-    gap: 12,
+    gap: 40,
   },
   teamLogo: { width: 60, height: 60 },
-  vs: { fontWeight: "700", color: Colors.text },
+  vs: { fontWeight: "700", color: Colors.text,fontSize:12 },
   innerRow: {
     borderWidth: 1,
     borderRadius: 8,
@@ -263,6 +258,12 @@ const styles = StyleSheet.create({
   trDate: { flexDirection: "row", alignItems: "center" },
   trTime: { flexDirection: "row", alignItems: "center" },
   venue: { flexDirection: "row", alignItems: "center" },
+  infoCal:{
+    marginLeft: 6,
+    fontSize: 12,
+    color: Colors.text,
+    fontWeight: "700",
+  },
   infoText: {
     marginLeft: 6,
     fontSize: 12,

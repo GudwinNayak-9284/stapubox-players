@@ -11,7 +11,7 @@ export type Match = {
   stage?: string | null;
   team_a?: string | null;
   team_b?: string | null;
-  start_time?: string | null; // ISO
+  start_date?: string | null; // ISO
   venue?: string | null;
   status?: string | null;
 };

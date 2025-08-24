@@ -44,10 +44,10 @@ export default function MonthCalendar({
   
     highlighted.forEach((date) => {
       marked[date] = {
-        marked: true,
+        marked: false,
         dotColor: "#000",
         customStyles: {
-          text: { color: "#000", fontWeight: "800" }, // dark bold text
+          text: { color: "#000", fontWeight: "900" }, // dark bold text
         },
       };
     });
